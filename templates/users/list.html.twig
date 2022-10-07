@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	User list
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-center">User list</h1>
+        <div class="row p-3">
+            <div class="col-6 text-center">
+                <a class="btn btn-primary" href="{{ path('app_users_import') }}" role="button">Import users</a>
+            </div>
+            <div class="col-6 text-center">
+                <a class="btn btn-primary" href="{{ path('app_users_add') }}" role="button">Add new user</a>
+            </div>
+        </div>
+		<div class="list-group">
+            {% for user in users %}
+			<a href="#" class="list-group-item list-group-item-action" aria-current="true">
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1">{{ user.name }}</h5>
+				</div>
+				<div class="row">
+					<div class="col-3 mb-1">Username:
+						<small>{{ user.username }}</small>
+					</div>
+					<div class="col-3 mb-1">Email:
+						<small>{{ user.email }}</small>
+					</div>
+                    <div class="col-3 mb-1">Phone:
+						<small>{{ user.phone }}</small>
+					</div>
+                    <div class="col-3 mb-1">Website:
+						<small>{{ user.website }}</small>
+					</div>
+                    <div class="col-6 mb-1 text-center"><i>Adress:</i><br />
+                        <small>
+                            {{ user.adressStreet }}<br />
+                            {{ user.adressSuite }}<br />
+                            {{ user.adressCity }}<br />
+                            {{ user.adressZipcode }}<br />
+                            Geo: {{ user.adressGeoLat}} {{ user.adressGeoLng }}
+                        </small>
+                    </div>
+                    <div class="col-6 mb-1 text-center"><i>Company:</i><br />
+                        <small>
+                            {{ user.companyName }}<br />
+                            {{ user.companyCatchPhrase }}<br />
+                            {{ user.companyBs }}<br />
+                        </small>
+                    </div>
+				</div>
+			</a>
+            {% endfor %}
+		</div>
+	</div>
+{% endblock %}
